@@ -1,5 +1,5 @@
 const jsonwebtoken = require('jsonwebtoken')
-const Topic = require('../models/Topics')
+const Topic = require('../models/topics')
 const User = require('../models/users')
 const { secret } = require('../conifg')
 
@@ -13,7 +13,7 @@ class topicCtl {
     .limit(perPage).skip(perPage * page)
   }
 
-  async findById (ctx) {
+  async findById (ctx) {  
     const { fields = '' } = ctx.query;
     const selectFields = fields.split(';').filter( f => f ).map(f => " +" + f).join('');
     const topic = await Topic.findById( ctx.params.id ).select( selectFields )
